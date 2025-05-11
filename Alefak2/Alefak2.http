@@ -1,0 +1,6 @@
+@Alefak2_HostAddress = http://localhost:5222
+
+GET {{Alefak2_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
