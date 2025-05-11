@@ -21,7 +21,7 @@ namespace Alefak2.Controllers
                 try
                 {
                     var canConnect = _context.Database.CanConnect();
-                    return Ok(canConnect ? "✅ Connection successful!" : "❌ Failed to connect.");
+                    return Ok(canConnect ? "✅ Conn successful!" : "❌ Failed to conn.");
                 }
                 catch (Exception ex)
                 {

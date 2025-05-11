@@ -17,6 +17,8 @@ namespace Alefak2.Controllers
         }
 
         [HttpGet]
+
+        //git gitgitgitgit
         public async Task<ActionResult<IEnumerable<Posts>>> GetPosts()
         {
             return await _context.posts.ToListAsync();
