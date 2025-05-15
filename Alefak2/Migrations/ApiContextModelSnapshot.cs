@@ -22,6 +22,28 @@ namespace Alefak2.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("Alefak2.Models.Likes", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("PostID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("likes");
+                });
+
             modelBuilder.Entity("Alefak2.Models.Posts", b =>
                 {
                     b.Property<int>("ID")

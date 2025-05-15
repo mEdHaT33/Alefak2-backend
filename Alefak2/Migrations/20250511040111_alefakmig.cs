@@ -53,6 +53,22 @@ namespace Alefak2.Migrations
                     table.PrimaryKey("PK_users", x => x.ID);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "likes",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    PostID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_likes", x => x.ID);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
         }
 
         /// <inheritdoc />

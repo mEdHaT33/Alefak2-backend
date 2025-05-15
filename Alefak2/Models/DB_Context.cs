@@ -13,6 +13,7 @@ namespace Alefak2.Models
 
         public DbSet<Posts> posts {  get; set; }
         public DbSet<User> users { get; set; }
+        public DbSet<Likes> likes { get; set; }
 
     }
 }
