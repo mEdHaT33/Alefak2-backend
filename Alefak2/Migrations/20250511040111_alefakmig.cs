@@ -34,22 +34,7 @@ namespace Alefak2.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
-                name: "users",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Password = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_users", x => x.ID);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+
 
             migrationBuilder.CreateTable(
                 name: "likes",
@@ -83,6 +68,11 @@ namespace Alefak2.Migrations
                     table.PrimaryKey("PK_comments", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.AlterDatabase()
+               .Annotation("MySql:CharSet", "utf8mb4");
+
+
         }
 
         /// <inheritdoc />

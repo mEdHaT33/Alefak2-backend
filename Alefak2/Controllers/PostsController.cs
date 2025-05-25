@@ -50,16 +50,6 @@ namespace Alefak2.Controllers
             return CreatedAtAction(nameof(GetPost), new { id = post.ID }, post);
         }
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> UpdatePost(int id, Posts post)
-        //{
-        //    if (id != post.ID)
-        //        return BadRequest();
-
-        //    _context.Entry(post).State = EntityState.Modified;
-        //    await _context.SaveChangesAsync();
-        //    return NoContent();
-        //}
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePost(int id)

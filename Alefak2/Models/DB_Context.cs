@@ -15,6 +15,5 @@ namespace Alefak2.Models
         public DbSet<User> users { get; set; }
         public DbSet<Likes> likes { get; set; }
         public DbSet<Comments> comments { get; set; }
-
     }
 }

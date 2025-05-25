@@ -11,8 +11,7 @@ builder.Services.AddDbContext<ApiContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddControllers();
-//builder.Services.AddOpenApi();
-builder.Services.AddEndpointsApiExplorer(); // Required
+builder.Services.AddEndpointsApiExplorer(); 
 builder.Services.AddSwaggerGen(); // Add Swagger
 
 var app = builder.Build();
