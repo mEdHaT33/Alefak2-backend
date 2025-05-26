@@ -54,6 +54,7 @@ namespace Alefak2.Controllers
                Date = p.Date,
                Image = p.Image
            }).ToListAsync();
+
             if (post == null || !post.Any())
                 return NotFound();
          return Ok(post);
