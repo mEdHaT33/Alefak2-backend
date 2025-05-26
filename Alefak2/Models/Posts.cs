@@ -11,7 +11,6 @@ namespace Alefak2.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-
         public int AuthorID { get; set; }
         
         public string Text { get; set; }
@@ -19,5 +18,7 @@ namespace Alefak2.Models
         public DateTime Date { get; set; }
         
         public string? Image { get; set; } // optional, could be a URL or base64 string
+        [ForeignKey("AuthorID")]
+        public User Author { get; set; }
     }
 } 

@@ -13,5 +13,6 @@ namespace Alefak2.Models
         public int Phone { get; set; }
         public string? Country { get; set; } = null;
         public string? City { get; set; } = null;
+
     }
 }

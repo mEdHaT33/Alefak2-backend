@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using Alefak2.DTOs;
 namespace Alefak2.Controllers
 {
     [Route("api/[controller]")]
@@ -19,27 +19,44 @@ namespace Alefak2.Controllers
         [HttpGet]
 
         //git 
-        public async Task<ActionResult<IEnumerable<Posts>>> GetPosts()
+        public async Task<ActionResult<IEnumerable<PostWithAuthorDTO>>> GetPosts()
         {
-            return await _context.posts.ToListAsync();
+            var posts= await _context.posts.Include(u => u.Author).Select(p => new PostWithAuthorDTO
+            {
+                ID = p.ID,
+                AuthorID = p.AuthorID,
+                Username = p.Author.UserName,
+                Text = p.Text,
+                Date = p.Date,
+                Image = p.Image
+            }).ToListAsync();
+            return Ok(posts);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Posts>> GetPost(int id)
+        public async Task<ActionResult<PostWithAuthorDTO>> GetPost(int id)
         {
             var post = await _context.posts.FindAsync(id);
             if (post == null)
                 return NotFound();
-            return post;
+            return Ok(post);
         }
 
         [HttpGet("auther/{AuthorID}")]
-        public async Task<ActionResult<IEnumerable<Posts>>> GetauthPost(int AuthorID)
+        public async Task<ActionResult<IEnumerable<PostWithAuthorDTO>>> GetauthPost(int AuthorID)
         {
-           var post = await _context.posts.Where(p => p.AuthorID == AuthorID).ToListAsync();
+           var post = await _context.posts.Where(p => p.AuthorID == AuthorID).Include(u=>u.Author).Select(p => new PostWithAuthorDTO
+           {
+               ID = p.ID,
+               AuthorID = p.AuthorID,
+               Username = p.Author.UserName,
+               Text = p.Text,
+               Date = p.Date,
+               Image = p.Image
+           }).ToListAsync();
             if (post == null || !post.Any())
                 return NotFound();
-         return post;
+         return Ok(post);
         }
 
         [HttpPost]
