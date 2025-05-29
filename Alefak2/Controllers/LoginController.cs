@@ -22,13 +22,13 @@ namespace Alefak2.Controllers
         [HttpPost("check")]
         public async Task<IActionResult> CheckLogin([FromBody] LoginRequest request)
         {
-            if (string.IsNullOrEmpty(request.UserName) || string.IsNullOrEmpty(request.Password))
+            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
             {
                 return BadRequest("Username and password are required.");
             }
 
             var user = await _context.users
-                .FirstOrDefaultAsync(u => u.UserName == request.UserName && u.Password == request.Password);
+                .FirstOrDefaultAsync(u => u.Email == request.Email && u.Password == request.Password);
 
             if (user == null)
             {
