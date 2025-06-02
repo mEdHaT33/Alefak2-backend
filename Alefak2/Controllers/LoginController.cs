@@ -38,9 +38,8 @@ namespace Alefak2.Controllers
             return Ok(new
             {
                 message = "Login successful",
-                user.ID,
-                user.UserName
-                
+                user,
+                                
             });
         }
     }
