@@ -38,7 +38,7 @@ namespace Alefak2.Controllers
         {
             var post = await _context.posts.FindAsync(id);
             if (post == null)
-                return NotFound();
+                return Content("No Posts Found. ");
             return Ok(post);
         }
 
@@ -56,7 +56,7 @@ namespace Alefak2.Controllers
            }).ToListAsync();
 
             if (post == null || !post.Any())
-                return NotFound();
+                return Content("No Posts Found. ");
          return Ok(post);
         }
 
@@ -74,7 +74,7 @@ namespace Alefak2.Controllers
         {
             var post = await _context.posts.FindAsync(id);
             if (post == null)
-                return NotFound();
+                return Content("No Posts Found. ");
 
             _context.posts.Remove(post);
             await _context.SaveChangesAsync();

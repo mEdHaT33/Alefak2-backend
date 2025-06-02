@@ -31,7 +31,7 @@ namespace Alefak2.Controllers
 
             if (likes == null)
             {
-                return NotFound();
+                return Content("No Likes Found. ");
             }
 
             return likes;
@@ -43,7 +43,7 @@ namespace Alefak2.Controllers
         {
             var likes = await _context.likes.Where(p => p.PostID == PostID).ToListAsync();
             if (likes == null || !likes.Any())
-                return NotFound();
+                return Content("No Likes Found. ");
             return likes;
         }
 
@@ -53,7 +53,7 @@ namespace Alefak2.Controllers
         {
             int likesCount = _context.likes.Where(p => p.PostID == PostID).Count();
             if (likesCount == null)
-                return NotFound();
+                return Content("No Likes Found. ");
             return likesCount;
         }
 
@@ -75,7 +75,7 @@ namespace Alefak2.Controllers
             var likes = await _context.likes.FindAsync(id);
             if (likes == null)
             {
-                return NotFound();
+                return Content("No Likes Found. ");
             }
 
             _context.likes.Remove(likes);

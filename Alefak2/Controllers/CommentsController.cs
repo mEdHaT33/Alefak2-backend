@@ -36,7 +36,7 @@ namespace Alefak2.Controllers
 
             if (comments == null)
             {
-                return NotFound();
+                return Content("No Comments Found. ");
             }
 
             return comments;
@@ -48,7 +48,7 @@ namespace Alefak2.Controllers
         {
             var comments = await _context.comments.Where(p => p.PostID == PostID).ToListAsync();
             if (comments == null || !comments.Any())
-                return NotFound();
+                return Content("No Comments Found. ");
             return comments;
         }
         // POST: api/Comments/CountComments/5
@@ -57,7 +57,7 @@ namespace Alefak2.Controllers
         {
             int CommentsCount = _context.comments.Where(p => p.PostID == PostID).Count();
             if (CommentsCount == null)
-                return NotFound();
+                return Content("No Comments Found. ");
             return CommentsCount;
         }
         // PUT: api/Comments/5
@@ -68,7 +68,7 @@ namespace Alefak2.Controllers
             var comment = await _context.comments.FindAsync(id);
             if (comment == null)
             {
-                return NotFound();
+                return Content("No Comments Found. ");
             }
 
             comment.Text = text.Text; // Only update the Text field

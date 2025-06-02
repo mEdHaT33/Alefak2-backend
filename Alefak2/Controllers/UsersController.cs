@@ -74,7 +74,7 @@ namespace Alefak2.Controllers
             {
                 if (!UserExists(id))
                 {
-                    return NotFound();
+                    return Content("No Users Found. ");
                 }
                 else
                 {
@@ -95,7 +95,7 @@ namespace Alefak2.Controllers
 
             if (user == null)
             {
-                return NotFound();
+                return Content("No Users Found. ");
             }
             var city = user.City;
             return city;
@@ -107,7 +107,7 @@ namespace Alefak2.Controllers
             var user = await _context.users.FindAsync(id);
             if (user == null)
             {
-                return NotFound();
+                return Content("No Users Found. ");
             }
 
             user.City = C.City; // Only update the Text field
@@ -130,7 +130,7 @@ namespace Alefak2.Controllers
 
             if (user == null)
             {
-                return NotFound();
+                return Content("No Users Found. ");
             }
             var Country = user.Country;
             return Country;
@@ -142,7 +142,7 @@ namespace Alefak2.Controllers
             var user = await _context.users.FindAsync(id);
             if (user == null)
             {
-                return NotFound();
+                return Content("No Users Found. ");
             }
 
             user.Country = C.Country; 
