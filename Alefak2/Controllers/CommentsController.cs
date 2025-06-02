@@ -42,8 +42,8 @@ namespace Alefak2.Controllers
             return comments;
         }
 
-        // POST: api/Likes/PostComments/5
-        [HttpGet("PostComments/{postid}")]
+        // POST: api/Comments/PostComments/5
+        [HttpGet("PostComments/{PostID}")]
         public async Task<ActionResult<IEnumerable<Comments>>> GetLikespost(int PostID)
         {
             var comments = await _context.comments.Where(p => p.PostID == PostID).ToListAsync();
@@ -51,8 +51,8 @@ namespace Alefak2.Controllers
                 return NotFound();
             return comments;
         }
-        // POST: api/Likes/CountComments/5
-        [HttpGet("CountsComments/{postid}")]
+        // POST: api/Comments/CountComments/5
+        [HttpGet("CountsComments/{PostID}")]
         public ActionResult<int> CountLikespost(int PostID)
         {
             int CommentsCount = _context.comments.Where(p => p.PostID == PostID).Count();
@@ -61,7 +61,7 @@ namespace Alefak2.Controllers
             return CommentsCount;
         }
         // PUT: api/Comments/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+       
         [HttpPut("EditText/{id}")]
         public async Task<IActionResult> PutComments(int id, Comments text)
         {
