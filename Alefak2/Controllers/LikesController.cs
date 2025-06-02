@@ -38,7 +38,7 @@ namespace Alefak2.Controllers
         }
 
         // POST: api/Likes/Postlikes/5
-        [HttpGet("Postlikes/{postid}")]
+        [HttpGet("Postlikes/{PostID}")]
         public async Task<ActionResult<IEnumerable<Likes>>> GetLikespost(int PostID)
         {
             var likes = await _context.likes.Where(p => p.PostID == PostID).ToListAsync();
@@ -48,7 +48,7 @@ namespace Alefak2.Controllers
         }
 
         // POST: api/Likes/Countlikes/5
-        [HttpGet("Countslikes/{postid}")]
+        [HttpGet("Countslikes/{PostID}")]
         public ActionResult<int> CountLikespost(int PostID)
         {
             int likesCount = _context.likes.Where(p => p.PostID == PostID).Count();
