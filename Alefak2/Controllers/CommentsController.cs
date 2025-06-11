@@ -36,7 +36,8 @@ namespace Alefak2.Controllers
 
             if (comments == null)
             {
-                return Content(" ");
+                return Ok(new List<Comments>());
+
             }
 
             return comments;
@@ -48,7 +49,7 @@ namespace Alefak2.Controllers
         {
             var comments = await _context.comments.Where(p => p.PostID == PostID).ToListAsync();
             if (comments == null || !comments.Any())
-                return Content(" ");
+                return Ok(new List<Comments>());
             return comments;
         }
         // POST: api/Comments/CountComments/5
@@ -57,7 +58,7 @@ namespace Alefak2.Controllers
         {
             int CommentsCount = _context.comments.Where(p => p.PostID == PostID).Count();
             if (CommentsCount == null)
-                return Content(" ");
+                return Ok(new List<Comments>());
             return CommentsCount;
         }
         // PUT: api/Comments/5
@@ -68,7 +69,7 @@ namespace Alefak2.Controllers
             var comment = await _context.comments.FindAsync(id);
             if (comment == null)
             {
-                return Content(" ");
+                return Ok(new List<Comments>());
             }
 
             comment.Text = text.Text; // Only update the Text field
@@ -110,8 +111,7 @@ namespace Alefak2.Controllers
             var comments = await _context.comments.FindAsync(id);
             if (comments == null)
             {
-                return Content(" ");
-            }
+return Content(" ");            }
 
             _context.comments.Remove(comments);
             await _context.SaveChangesAsync();
