@@ -251,7 +251,7 @@ namespace Alefak2.Controllers
 
         // Get: api/User/Phone/{id}
         [HttpGet("Phone/{id}")]
-        public async Task<ActionResult<int>> GetUserPhone(int id)
+        public async Task<ActionResult<string>> GetUserPhone(int id)
         {
             var user = await _context.users.FindAsync(id);
 
@@ -259,7 +259,7 @@ namespace Alefak2.Controllers
             {
                 return NotFound();
             }
-            int phone = user.Phone;
+            string phone = user.Phone;
             return phone;
         }
 
