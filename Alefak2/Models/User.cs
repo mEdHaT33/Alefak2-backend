@@ -14,6 +14,10 @@ namespace Alefak2.Models
         public string? Country { get; set; } = null;
         public string? City { get; set; } = null;
         public string? Image { get; set; } = "https://i.pinimg.com/736x/1f/9f/2b/1f9f2ba580d5593237e7c1f7ab979ef8.jpg";// optional, could be a URL or base64 string
+        public int Age { get; set; }
+        public string Gender { get; set; }
+        public string? Address { get; set; }
+        public string? IdImage { get; set; }
 
 
     }
