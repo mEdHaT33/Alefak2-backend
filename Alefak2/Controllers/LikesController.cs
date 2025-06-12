@@ -54,7 +54,7 @@ namespace Alefak2.Controllers
             int likesCount = _context.likes.Where(p => p.PostID == PostID).Count();
             if (likesCount == null)
                 return Ok(new List<Likes>());
-            return likesCount;
+            return Ok(new Dictionary<string, int> { { "LikesCount", likesCount } });
         }
 
 

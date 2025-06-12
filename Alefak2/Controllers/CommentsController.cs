@@ -59,7 +59,7 @@ namespace Alefak2.Controllers
             int CommentsCount = _context.comments.Where(p => p.PostID == PostID).Count();
             if (CommentsCount == null)
                 return Ok(new List<Comments>());
-            return CommentsCount;
+            return Ok(new Dictionary<string, int> { { "CommentsCount", CommentsCount } });
         }
         // PUT: api/Comments/5
        
