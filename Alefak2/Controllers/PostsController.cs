@@ -18,9 +18,8 @@ namespace Alefak2.Controllers
 
         [HttpGet]
 
-        //git 
-        public async Task<ActionResult<IEnumerable<PostWithAuthorDTO>>> GetPosts()
-        {
+         public async Task<ActionResult<IEnumerable<PostWithAuthorDTO>>> GetPosts()
+         {
             var posts= await _context.posts.Include(u => u.Author).Select(p => new PostWithAuthorDTO
             {
                 ID = p.ID,
@@ -31,7 +30,7 @@ namespace Alefak2.Controllers
                 Image = p.Image
             }).ToListAsync();
             return Ok(posts);
-        }
+         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<PostWithAuthorDTO>> GetPost(int id)
@@ -53,7 +52,7 @@ namespace Alefak2.Controllers
             }
 
             // Redirect to deep link the app can handle
-            return Redirect($"https://post/{id}");
+            return Redirect($"Alefak://post/{id}");
         }
 
         [HttpGet("auther/{AuthorID}")]
