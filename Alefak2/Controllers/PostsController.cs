@@ -53,7 +53,7 @@ namespace Alefak2.Controllers
             }
 
             // Redirect to deep link the app can handle
-            return Redirect($"Alefak://post/{id}");
+            return Redirect($"https://post/{id}");
         }
 
         [HttpGet("auther/{AuthorID}")]
