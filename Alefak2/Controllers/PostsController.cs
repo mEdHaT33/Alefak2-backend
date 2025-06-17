@@ -52,7 +52,7 @@ namespace Alefak2.Controllers
             }
 
             // Redirect to deep link the app can handle
-            return Redirect($"https://25a7-81-10-3-167.ngrok-free.app/api/Posts/{id}");
+            return Redirect($"https://25a7-81-10-3-167.ngrok-free.app/post/{id}");
         }
 
         [HttpGet("auther/{AuthorID}")]
