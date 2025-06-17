@@ -42,7 +42,7 @@ namespace Alefak2.Controllers
             return Ok(post);
         }
 
-        [HttpGet("/Sharedposts/{id}")]
+        [HttpGet("Sharedposts/{id}")]
         public IActionResult DeepLinkRedirect(int id)
         {
             // Optional: check if post exists
