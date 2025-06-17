@@ -42,6 +42,20 @@ namespace Alefak2.Controllers
             return Ok(post);
         }
 
+        [HttpGet("/posts/{id}")]
+        public IActionResult DeepLinkRedirect(int id)
+        {
+            // Optional: check if post exists
+            var postExists = _context.posts.Any(p => p.ID == id);
+            if (!postExists)
+            {
+                return NotFound("Post not found.");
+            }
+
+            // Redirect to deep link the app can handle
+            return Redirect($"Alefak://post/{id}");
+        }
+
         [HttpGet("auther/{AuthorID}")]
         public async Task<ActionResult<IEnumerable<PostWithAuthorDTO>>> GetauthPost(int AuthorID)
         {

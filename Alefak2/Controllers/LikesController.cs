@@ -49,7 +49,7 @@ namespace Alefak2.Controllers
 
         // POST: api/Likes/Countlikes/5
         [HttpGet("Countslikes/{PostID}")]
-        public ActionResult<int> CountLikespost(int PostID)
+        public ActionResult<string> CountLikespost(int PostID)
         {
             int likesCount = _context.likes.Where(p => p.PostID == PostID).Count();
             if (likesCount == null)
