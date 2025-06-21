@@ -63,9 +63,10 @@ namespace Alefak2.Controllers
         public async Task<ActionResult<Likes>> PostLikes(Likes likes)
         {
             _context.likes.Add(likes);
+            await _context.SaveChangesAsync();
 
             // Update LikesCount in posts table
-            var post = await _context.posts.FindAsync(likes.PostID);
+            var post = await _context.posts.FirstOrDefaultAsync(p => p.ID == likes.PostID);
             if (post != null)
             {
                 post.LikesCount += 1;
@@ -85,7 +86,12 @@ namespace Alefak2.Controllers
             {
                 return Ok(new List<Likes>());
             }
-
+            var post = await _context.posts.FirstOrDefaultAsync(p => p.ID == likes.PostID);
+            if (post != null)
+            {
+                post.LikesCount -= 1;
+                await _context.SaveChangesAsync();
+            }
             _context.likes.Remove(likes);
             await _context.SaveChangesAsync();
 

@@ -101,6 +101,13 @@ namespace Alefak2.Controllers
             _context.comments.Add(comments);
             await _context.SaveChangesAsync();
 
+            var post = await _context.posts.FirstOrDefaultAsync(p => p.ID == comments.PostID);
+            if (post != null)
+            {
+                post.CommentsCount += 1;
+                await _context.SaveChangesAsync();
+            }
+
             return CreatedAtAction("GetComments", new { id = comments.Id }, comments);
         }
 
@@ -111,7 +118,15 @@ namespace Alefak2.Controllers
             var comments = await _context.comments.FindAsync(id);
             if (comments == null)
             {
-return Content(" ");            }
+
+                return Content(" ");
+            }
+            var post = await _context.posts.FirstOrDefaultAsync(p => p.ID == comments.PostID);
+            if (post != null)
+            {
+                post.CommentsCount -= 1;
+                await _context.SaveChangesAsync();
+            }
 
             _context.comments.Remove(comments);
             await _context.SaveChangesAsync();
