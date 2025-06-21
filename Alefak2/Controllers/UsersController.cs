@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Alefak2.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using static Google.Rpc.Context.AttributeContext.Types;
 
 namespace Alefak2.Controllers
 {
@@ -288,7 +291,7 @@ namespace Alefak2.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id, [FromBody] string password)
+        public async Task<IActionResult> DeleteUser(int id, [FromBody] string userpassword)
         {
             var user = await _context.users.FindAsync(id);
             if (user == null)
@@ -296,19 +299,22 @@ namespace Alefak2.Controllers
                 return NotFound();
             }
 
-            if (password == null)
-            {
-                return Content("Please enter Passowrd. ");
-            }
+            if (string.IsNullOrWhiteSpace(userpassword))
+                return BadRequest("Please enter a password.");
 
-            if (password == user.Password)
+            var hasher = new PasswordHasher<User>();
+            user.Password = hasher.HashPassword(user, user.Password);
+            var result = hasher.VerifyHashedPassword(user, user.Password, userpassword);
+
+            if (result == PasswordVerificationResult.Success)
             {
                 _context.users.Remove(user);
                 await _context.SaveChangesAsync();
-                return Content("User Deleted. ");
+                return Ok($"User {user.ID} deleted.");
             }
-            else {
-                return Content("Wrong Password. ");
+            else
+            {
+                return Unauthorized("Wrong password.");
             }
         }
 

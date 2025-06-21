@@ -35,7 +35,7 @@ namespace Alefak2.Controllers
                 return Unauthorized("Invalid credentials.");
 
             var hasher = new PasswordHasher<User>();
-            user.Password = hasher.HashPassword(user, request.Password);
+            user.Password = hasher.HashPassword(user, user.Password);
             var result = hasher.VerifyHashedPassword(user, user.Password, request.Password);
 
 
