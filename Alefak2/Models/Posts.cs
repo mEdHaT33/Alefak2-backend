@@ -23,5 +23,8 @@ namespace Alefak2.Models
 
 
         public User Author { get; set; }
+
+        public int CommentsCount { get; set; }
+        public int LikesCount { get; set; }
     }
 } 
