@@ -67,7 +67,9 @@ namespace Alefak2.Controllers
                Username = p.Author.UserName,
                Text = p.Text,
                Date = p.Date,
-               Image = p.Image
+               Image = p.Image,
+               LikesCount = p.LikesCount,
+               CommentsCount = p.CommentsCount,
            }).ToListAsync();
 
             if (post == null || !post.Any())
