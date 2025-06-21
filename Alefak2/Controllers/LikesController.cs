@@ -63,7 +63,6 @@ namespace Alefak2.Controllers
         public async Task<ActionResult<Likes>> PostLikes(Likes likes)
         {
             _context.likes.Add(likes);
-            await _context.SaveChangesAsync();
 
             // Update LikesCount in posts table
             var post = await _context.posts.FindAsync(likes.PostID);
