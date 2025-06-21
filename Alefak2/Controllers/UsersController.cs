@@ -288,7 +288,7 @@ namespace Alefak2.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteUser(int id, [FromBody] string password)
         {
             var user = await _context.users.FindAsync(id);
             if (user == null)
@@ -296,10 +296,20 @@ namespace Alefak2.Controllers
                 return NotFound();
             }
 
-            _context.users.Remove(user);
-            await _context.SaveChangesAsync();
+            if (password == null)
+            {
+                return Content("Please enter Passowrd. ");
+            }
 
-            return NoContent();
+            if (password == user.Password)
+            {
+                _context.users.Remove(user);
+                await _context.SaveChangesAsync();
+                return Content("User Deleted. ");
+            }
+            else {
+                return Content("Wrong Password. ");
+            }
         }
 
         private bool UserExists(int id)
