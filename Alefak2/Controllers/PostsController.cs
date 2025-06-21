@@ -37,7 +37,7 @@ namespace Alefak2.Controllers
         {
             var post = await _context.posts.FindAsync(id);
             if (post == null)
-                return Content("No Posts Found. ");
+                return Ok(new List<Posts>());
             return Ok(post);
         }
 
@@ -48,7 +48,7 @@ namespace Alefak2.Controllers
             var postExists = _context.posts.Any(p => p.ID == id);
             if (!postExists)
             {
-                return NotFound("Post not found.");
+                return Ok(new List<Posts>());
             }
 
             // Redirect to deep link the app can handle
@@ -69,8 +69,8 @@ namespace Alefak2.Controllers
            }).ToListAsync();
 
             if (post == null || !post.Any())
-                return Content("No Posts Found. ");
-         return Ok(post);
+                return Ok(new List<Posts>());
+            return Ok(post);
         }
 
         [HttpPost]
@@ -87,7 +87,7 @@ namespace Alefak2.Controllers
         {
             var post = await _context.posts.FindAsync(id);
             if (post == null)
-                return Content("No Posts Found. ");
+                return Ok(new List<Posts>());
 
             _context.posts.Remove(post);
             await _context.SaveChangesAsync();

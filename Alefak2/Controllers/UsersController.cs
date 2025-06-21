@@ -38,7 +38,7 @@ namespace Alefak2.Controllers
 
             if (user == null)
             {
-                return NotFound();
+                return Ok(new List<User>());
             }
 
             return user;
@@ -52,7 +52,8 @@ namespace Alefak2.Controllers
 
             if (user == null)
             {
-                return NotFound();
+                return Ok(new List<User>());
+
             }
             var UserName = user.UserName;
             return UserName;
@@ -168,11 +169,11 @@ namespace Alefak2.Controllers
         [HttpGet("password/{id}")]
         public async Task<ActionResult<string>> GetUserPassowrd(int id)
         {
-            var user = await _context.users.FindAsync(id);
+            var user = await _context.users.FindAsync(id);  
 
             if (user == null)
             {
-                return NotFound();
+                return Ok(new List<User>());
             }
             var pass=user.Password;
             return pass;
@@ -185,7 +186,7 @@ namespace Alefak2.Controllers
             var user = await _context.users.FindAsync(id);
             if (user == null)
             {
-                return NotFound();
+                return Ok(new List<User>());
             }
 
             user.Password = pass.Password; // Only update the Text field
@@ -222,7 +223,7 @@ namespace Alefak2.Controllers
 
             if (user == null)
             {
-                return NotFound();
+                return Ok(new List<User>());
             }
             var mail = user.Email;
             return mail;
@@ -235,7 +236,7 @@ namespace Alefak2.Controllers
             var user = await _context.users.FindAsync(id);
             if (user == null)
             {
-                return NotFound();
+                return Ok(new List<User>());
             }
 
             user.Email = mail.Email; 
@@ -247,7 +248,8 @@ namespace Alefak2.Controllers
             catch (DbUpdateConcurrencyException)
             {
             }
-            return NoContent();
+            return Ok(new List<User>());
+
         }
 
 
@@ -260,7 +262,7 @@ namespace Alefak2.Controllers
 
             if (user == null)
             {
-                return NotFound();
+                return Ok(new List<User>());
             }
             string phone = user.Phone;
             return phone;
@@ -273,7 +275,7 @@ namespace Alefak2.Controllers
             var user = await _context.users.FindAsync(id);
             if (user == null)
             {
-                return NotFound();
+                return Ok(new List<User>());
             }
 
             user.Phone = ph.Phone;
@@ -285,7 +287,8 @@ namespace Alefak2.Controllers
             catch (DbUpdateConcurrencyException)
             {
             }
-            return NoContent();
+            return Ok(new List<User>());
+
         }
 
 
@@ -296,7 +299,7 @@ namespace Alefak2.Controllers
             var user = await _context.users.FindAsync(id);
             if (user == null)
             {
-                return NotFound();
+                return Ok(new List<User>());
             }
 
             if (string.IsNullOrWhiteSpace(userpassword))
